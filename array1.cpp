@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <bits/stdc++.h> //creating an ADT array dynamically
 using namespace std;
 
 class myArray
