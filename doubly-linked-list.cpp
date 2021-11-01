@@ -90,7 +90,78 @@ void insertatnode(node* Node,int val)
     q->next=ptr;
     p->prev=ptr;    
 }
+
+//Case 1(DELETION)
+node* deletehead(node* head)
+{
+    node* ptr=head;
+    node* p=head->next;
+
+    p->prev=NULL;
+    head=p;
+    free(ptr);
+    return head;
+
+}
  
+//Case 2(DELETION)
+node* deleteend(node* head)
+{
+    node* ptr=head;
+    
+
+    while(ptr->next!=NULL)
+    {
+        ptr=ptr->next;
+    }
+    ptr->prev->next=NULL;
+    free(ptr);
+    return head;
+
+}
+
+//Case 3(DELETION)
+node* deleteatindex(node* head,int index)
+{
+    node* ptr=head;
+    int i=0;
+    while(i!=index)
+    {
+        ptr=ptr->next;
+        i++;
+    }
+    ptr->prev->next=ptr->next;
+    ptr->next->prev=ptr->prev;
+    free(ptr);
+    return head;
+
+}
+ 
+//Case 4(DELETION)
+void deletenode(node* Node)
+{
+    node* ptr=Node;
+    
+    ptr->prev->next=ptr->next;
+    ptr->next->prev=ptr->prev;
+    free(ptr);
+    
+
+}
+
+//Case 5(DELETION)
+void deletevalue(node* head,int val)
+{
+    node* ptr=head;
+    
+    while(ptr->data!=val)
+    {
+        ptr=ptr->next;
+    }
+    ptr->prev->next=ptr->next;
+    ptr->next->prev=ptr->prev;
+    free(ptr);
+}
 int main()
 {
     node *head;
@@ -123,9 +194,14 @@ int main()
     traverse(head);
 
     // head=inserthead(head,5);
-    // head = insertend(head, 5);
-    // head = insertatindex(head,2,4);
-    insertatnode(third,4);
+    // head=insertend(head, 5);
+    // head=insertatindex(head,2,4);
+    // insertatnode(third,4);
+    // head=deletehead(head);
+    // head=deleteend(head);
+    // head=deleteatindex(head,2);
+    // deletenode(first);
+    deletevalue(head,1);
 
     cout << "After Operation..." << endl;
     traverse(head);
